@@ -55,6 +55,12 @@
             <artifactId>dynamodb</artifactId>
             <version>${cdk.version}</version>
         </dependency>
+        <!-- Additional Construct Libraries -->
+        <dependency>
+            <groupId>com.github.eladb</groupId>
+            <artifactId>cdk-dynamo-table-viewer</artifactId>
+            <version>3.0.6</version>
+        </dependency>
 
         <dependency>
           <groupId>org.junit.jupiter</groupId>

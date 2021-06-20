@@ -1,5 +1,6 @@
 package com.myorg;
 
+import com.github.eladb.dynamotableviewer.TableViewer;
 import software.amazon.awscdk.core.Construct;
 import software.amazon.awscdk.core.Stack;
 import software.amazon.awscdk.core.StackProps;
@@ -22,7 +23,7 @@ public class CdkWorkshopStack extends Stack {
                 .handler("hello.handler")
                 .build();
 
-        final HitCounter helloWithCounter = new HitCounter(this ,"HelloHitCounter", HitCounterProps.builder()
+        final HitCounter helloWithCounter = new HitCounter(this, "HelloHitCounter", HitCounterProps.builder()
                 .downstream(hello)
                 .build());
 
@@ -30,6 +31,11 @@ public class CdkWorkshopStack extends Stack {
                 .handler(helloWithCounter.getHandler())
                 .build();
 
+        // Defines a viewer for the HitCounts table
+        TableViewer.Builder.create(this, "ViewerHitCount")
+                .title("Hello Hits")
+                .table(helloWithCounter.getTable())
+                .build();
 
     }
 }
